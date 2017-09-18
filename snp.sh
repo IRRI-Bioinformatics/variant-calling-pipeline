@@ -8,7 +8,15 @@ input_dir=${conf##*=}
 filename="input.info"
 inc_pairs=false
 
-mkdir $analysis_dir/$disk
+#check directory if exists or not
+directory="$analysis_dir/$disk"
+if [ ! -d $directory ]
+then
+	echo "creating analysis directory at $directory."
+	mkdir "$directory"
+else
+	echo "$directory already exists."
+fi
 
 #check if read pairs are complete
 while read -r line		#read each line
